@@ -30,6 +30,7 @@ export default function MainSection() {
           )
         )}
       </div>
+      <DeliveryCard />
     </section>
   )
 }
