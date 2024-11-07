@@ -1,17 +1,35 @@
 'use client'
 
+import MainCard from '@/components/card/MainCard'
+import DeliveryCard from '@/components/card/DeliveryCard'
+
+const property = [
+  { title: '배달', description: 'B마트', imageURL: '/images/baemin.jpeg' },
+  {
+    title: 'B마트',
+    description: '장보기도 더 빠르게',
+    imageURL: '/images/baemin.jpeg'
+  },
+  {
+    title: '배민스토어',
+    description: '배달은 지금 옵니다',
+    imageURL: '/images/baemin.jpeg'
+  }
+]
+
 export default function MainSection() {
   return (
-    <section className="h-full">
-      <div className="flex flex-wrap">
-        {[1, 2, 3].map((index: number) => (
-          <div key={index}>Card</div>
-        ))}
+    <section className="flex h-full flex-col">
+      <div className="flex">
+        {property.map(
+          (
+            value: { title: string; description: string; imageURL: string },
+            index: number
+          ) => (
+            <MainCard key={index} property={value} />
+          )
+        )}
       </div>
-      <div>Big Card</div>
-      <div>banner Carousel</div>
-      <div>Icon menu Horizon</div>
-      <div>우리동네 빠른 배달</div>
     </section>
   )
 }
