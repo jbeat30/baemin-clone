@@ -1,12 +1,12 @@
 {
   "extends": [
-    "next/core-web-vitals", // Next.js의 핵심 웹 생명 주기 및 성능 규칙 확장
-    "next/typescript", // Next.js TypeScript 지원을 위한 규칙 확장
-    "plugin:prettier/recommended" // Prettier 규칙을 포함하고, 충돌 방지 설정
+    "next/core-web-vitals", // Next.js의 핵심 웹 성능 규칙 확장
+    "next/typescript", // Next.js TypeScript 지원 규칙 확장
+    "plugin:prettier/recommended" // Prettier 규칙 및 충돌 방지
   ],
-  "plugins": ["prettier"], // Prettier 관련 플러그인 추가
+  "plugins": ["prettier"], // Prettier 플러그인 추가
   "rules": {
-    "prettier/prettier": "error", // Prettier 규칙 위반 시 ESLint 에러로 처리
-    "tailwindcss/classnames-order": "off" // Tailwind CSS 클래스 이름 순서 경고 비활성화
+    "prettier/prettier": "error", // Prettier 규칙 위반 시 에러로 처리
+    "tailwindcss/classnames-order": "off" // Tailwind 클래스 순서 검사 비활성화
   }
 }
