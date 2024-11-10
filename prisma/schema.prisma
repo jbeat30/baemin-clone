@@ -19,3 +19,37 @@ model User {
   email String  @unique
   name  String?
 }
+
+model Shop {
+  id           String   @id @default(uuid())
+  title        String
+  star         Int
+  description  String
+  deliveryTime String
+  deliveryFee  String
+  minumumOrder String
+  cardImage    String
+  coverImage   String
+  tags         String[]
+  phone        String
+  review       Review[]
+  heart        Heart[]
+  create_at    DateTime @default(now())
+  update_at    DateTime @updatedAt
+}
+
+model Review {
+  id     String  @id @default(uuid())
+  Shop   Shop?   @relation(fields: [shopId], onDelete: Cascade, references: [id])
+  shopId String?
+
+  @@index([shopId])
+}
+
+model Heart {
+  id     String  @id @default(uuid())
+  Shop   Shop?   @relation(fields: [shopId], onDelete: Cascade, references: [id])
+  shopId String?
+
+  @@index([shopId])
+}
