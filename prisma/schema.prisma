@@ -15,9 +15,11 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id      String   @id @default(uuid())
+  email   String   @unique
+  name    String?
+  reivews Review[]
+  hearts  Heart[]
 }
 
 model Shop {
@@ -27,11 +29,10 @@ model Shop {
   description  String
   deliveryTime String
   deliveryFee  String
-  minumumOrder String
+  minimumOrder String
   cardImage    String
   coverImage   String
-  tags         String[]
-  phone        String
+  tag          String
   review       Review[]
   heart        Heart[]
   create_at    DateTime @default(now())
@@ -40,16 +41,23 @@ model Shop {
 
 model Review {
   id     String  @id @default(uuid())
+  text   String  @db.Text
   Shop   Shop?   @relation(fields: [shopId], onDelete: Cascade, references: [id])
   shopId String?
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 
   @@index([shopId])
+  @@index([userId])
 }
 
 model Heart {
   id     String  @id @default(uuid())
   Shop   Shop?   @relation(fields: [shopId], onDelete: Cascade, references: [id])
   shopId String?
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 
   @@index([shopId])
+  @@index([userId])
 }
