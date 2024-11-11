@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 const deliveryIcons = [
   {
@@ -76,7 +77,8 @@ export default function DeliveryCard() {
         <div className="mt-4 grid grid-cols-5 content-center items-center justify-center gap-8">
           {deliveryIcons.map(
             (value: { iconURL: string; title: string }, index: number) => (
-              <div
+              <Link
+                href={'/shop'}
                 key={index}
                 className="flex w-full flex-col items-center justify-center"
               >
@@ -87,7 +89,7 @@ export default function DeliveryCard() {
                   src={value.iconURL}
                 />
                 <p>{value.title}</p>
-              </div>
+              </Link>
             )
           )}
         </div>
