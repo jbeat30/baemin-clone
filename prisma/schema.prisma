@@ -35,6 +35,7 @@ model Shop {
   tag          String
   review       Review[]
   heart        Heart[]
+  menus        Menu[]
   create_at    DateTime @default(now())
   update_at    DateTime @updatedAt
 }
@@ -60,4 +61,15 @@ model Heart {
 
   @@index([shopId])
   @@index([userId])
+}
+
+model Menu {
+  id       String  @id @default(uuid())
+  category String
+  menu     String
+  price    Int
+  Shop     Shop?   @relation(fields: [shopId], references: [id])
+  shopId   String?
+
+  @@index([shopId])
 }
