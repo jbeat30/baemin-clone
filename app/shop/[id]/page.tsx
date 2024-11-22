@@ -23,5 +23,5 @@ export default async function ShopDetail({
   const shop = await getShop(paramsResolved.id)
   const menu = await getShopDetail(paramsResolved.id)
 
-  return <ShopDetailSection shop={shop} menu={menu} />
+  return <ShopDetailSection shop={shop} detail={menu} />
 }
