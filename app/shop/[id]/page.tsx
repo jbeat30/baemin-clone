@@ -12,5 +12,6 @@ export default async function ShopDetail({
 }) {
   const paramsResolved = await params
   const detail = await getShopDetail(paramsResolved.id)
+  console.log(detail)
   return <div>{paramsResolved.id}</div>
 }
