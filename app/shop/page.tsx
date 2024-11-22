@@ -1,17 +1,14 @@
 import ShopListSection from '@/components/section/ShopListSection'
 
 async function getShopItem() {
-  const shopItem = await (await fetch('http://localhost:3000/api/shop')).json()
-
-  console.log('shopItem : ', shopItem)
-  return
+  return await (await fetch('http://localhost:3000/api/shop')).json()
 }
 
 export default async function Shop() {
   const shopItems = await getShopItem()
   return (
     <div>
-      <ShopListSection />
+      <ShopListSection shops={shopItems} />
     </div>
   )
 }

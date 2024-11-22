@@ -6,8 +6,17 @@ export default function Upload({
 }: {
   searchParams: { message: string }
 }) {
-  async function posting(data: FormData) {
+  async function handlePosting(data: FormData) {
     'use server'
+
+    const success = await fetch(`http://localhost:3000/api/shop`, {
+      method: 'post',
+      body: data
+    })
+
+    if (!success.ok) {
+      redirect('/upload?message=something is wrong')
+    }
 
     const uploadPost = await prisma.shop.create({
       data: {
@@ -22,7 +31,6 @@ export default function Upload({
         tag: data.get('tag')?.toString() as string
       }
     })
-
     if (uploadPost) {
       return redirect('/upload?message=success')
     }
@@ -73,7 +81,7 @@ export default function Upload({
           <input type="text" id="tag" name="tag" />
         </div>
         <button
-          formAction={posting}
+          formAction={handlePosting}
           className="mt-2 rounded-md bg-blue-500 px-2 py-1 text-white"
         >
           submit
