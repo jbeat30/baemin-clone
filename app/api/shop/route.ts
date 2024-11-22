@@ -3,9 +3,21 @@ import prisma from '@/util/prisma'
 
 export async function GET(req: NextRequest) {
   try {
-    const shopItem = await prisma?.shop.findMany({ take: 10 })
+    const id = req.nextUrl.searchParams.get('id') as string
 
-    if (shopItem && shopItem.length > 0) {
+    if (!id) {
+      const shopItem = await prisma?.shop.findMany({ take: 10 })
+
+      if (shopItem && shopItem.length > 0) {
+        return NextResponse.json(shopItem)
+      }
+    }
+
+    const shopItem = await prisma.shop.findUnique({
+      where: { id: id }
+    })
+
+    if (shopItem) {
       return NextResponse.json(shopItem)
     }
 
