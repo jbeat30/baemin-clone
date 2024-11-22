@@ -5,7 +5,12 @@ async function getShopDetail(id: string) {
   return response.json()
 }
 
-export default function ShopDetail({ params }: { params: { id: string } }) {
-  const detail = getShopDetail(params.id)
-  return <div>{params.id}</div>
+export default async function ShopDetail({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const paramsResolved = await params
+  const detail = await getShopDetail(paramsResolved.id)
+  return <div>{paramsResolved.id}</div>
 }

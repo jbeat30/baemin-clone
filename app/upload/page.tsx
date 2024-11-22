@@ -1,11 +1,12 @@
 import prisma from '@/util/prisma'
 import { redirect } from 'next/navigation'
 
-export default function Upload({
+export default async function Upload({
   searchParams
 }: {
-  searchParams: { message: string }
+  searchParams: Promise<{ message: string }>
 }) {
+  const { message } = await searchParams
   async function handlePosting(data: FormData) {
     'use server'
 
@@ -86,7 +87,7 @@ export default function Upload({
         >
           submit
         </button>
-        {searchParams && <p className="text-red-500">{searchParams.message}</p>}
+        {message && <p className="text-red-500">{message}</p>}
       </div>
     </form>
   )
