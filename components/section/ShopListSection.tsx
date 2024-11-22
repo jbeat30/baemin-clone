@@ -1,8 +1,10 @@
-import ShopCard from '@/components/card/ShopCard'
+'use client'
+
 import { Shop } from '@prisma/client'
 import Link from 'next/link'
+import ShopCard from '@/components/card/ShopCard'
 
-export default function ShopListSection() {
+export default function ShopListSection({ shops }: { shops: Shop[] }) {
   return (
     <section className="p-4">
       <div className="flex- w-full justify-center">
@@ -21,16 +23,18 @@ export default function ShopListSection() {
               d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
             />
           </svg>
-          <h2>배달</h2>
-          <Link href="/upload">upload</Link>
+          <div className="flex w-full justify-between">
+            <h2>배달</h2>
+            <Link href="/upload">upload</Link>
+          </div>
         </div>
       </div>
       <div className="my-2 flex h-1 w-full bg-gray-300" />
 
       {/* Shop List */}
       <div>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((shop: any, index) => (
-          <Link href={`/shop/${shop.id}`} key={index}>
+        {shops?.map((shop: Shop, index: number) => (
+          <Link key={shop.id} href={`/shop/${shop.id}`}>
             <ShopCard shop={shop} />
           </Link>
         ))}
