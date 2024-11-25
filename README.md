@@ -27,6 +27,9 @@
 - **Prettier**  
   코드 포맷팅 도구를 설정하여 일관성 있는 코드 스타일을 유지했습니다.
 
+- **Playwright**  
+  E2E(End-to-End) 테스트를 위한 자동화 도구로, 브라우저 간의 기능 테스트를 통해 애플리케이션의 품질을 보장하고 있습니다. Playwright를 사용하여 사용자 흐름을 시뮬레이션하고, 예상된 동작이 실제로 수행되는지 확인하고 있습니다.
+
 ---
 
 ## 프로젝트 목표
@@ -71,4 +74,10 @@ pnpm prisma generate
 ### 5. 개발 서버 실행
 ```bash
 pnpm dev
+```
+
+### 6. E2E 테스트
+```bash
+pnpm exec playwright test 
+pnpm exec playwright test --ui
 ```
