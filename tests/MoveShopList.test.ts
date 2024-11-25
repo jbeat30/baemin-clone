@@ -41,3 +41,20 @@ test('상점 목록에서 데이터 확인', async ({ request }) => {
     })
   )
 })
+
+test('상점 상세 이동 - 마지막 상점 (UUID)', async ({ page }) => {
+  await page.goto('/')
+
+  // /shop 페이지로 이동
+  await page.click('a[href*="shop"]')
+  await expect(page).toHaveURL('/shop')
+
+  // 마지막 상점의 링크 클릭 (상점 목록에서 마지막 아이템)
+  const lastShopLink = page.locator('a[href*="/shop/"]').last()
+  await lastShopLink.click()
+
+  // 상점 디테일 페이지로 이동했는지 확인 (UUID 형태의 id를 포함한 URL 확인)
+  await expect(page).toHaveURL(
+    /\/shop\/[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}/
+  )
+})
